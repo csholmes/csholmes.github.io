@@ -1,7 +1,7 @@
 var routepath = createRoutepath(route);
 var pictureMarkers = createPictureMarkers(photos);
 var pictureWindows = createPictureWindows(photos);
-var host_markers = [];
+var hostMarkers = createHostMarkers(hosts);
 var map;
 
 function initialize() {
@@ -27,20 +27,8 @@ function initialize() {
 
   pictureWindows.forEach(pictureWindow => pictureWindow.close());
 
-  
 
-  
- 
-  // CREATE PHOTO THINGS
-
-
-
-    // hosts
-
-    for (i = 0; i < hosts.length; i++) {
-        pt = new google.maps.Marker({position: new google.maps.LatLng(hosts[i][0],hosts[i][1]), map: map, title: 'Host' });
-        host_markers.push(pt);
-    }
+  hostMarkers.forEach(hostMarker => hostMarker.setMap(map));
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
@@ -51,22 +39,12 @@ google.maps.event.addDomListener(window, 'load', initialize);
 //  pic_windows[toopen].open(map,pic_markers[toopen]);
 //}
 
-
-// Sets the map on all markers in the array.
-
-
-// Sets the map on all markers in the array.
-function showHosts(map) {
-  for (var i = 0; i < host_markers.length; i++) {
-    host_markers[i].setMap(map);
-  }
-}
  
 function toggleHosts(cb) {
   if (cb.checked) {
-    showHosts(map);
+    hostMarkers.forEach(hostMarker => hostMarker.setMap(map));
   } else { 
-    showHosts(null);
+    hostMarkers.forEach(hostMarker => hostMarker.setMap(null));
   }
 }
 
