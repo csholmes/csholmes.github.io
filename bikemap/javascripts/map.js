@@ -17,26 +17,8 @@ function initialize() {
   map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
 
-  // CREATE ROUTE
-
-  var route_enc = [];
-
-  for (i = 0; i < route.length; i++) {
-        pt = new google.maps.LatLng(route[i][0],route[i][1]);
-        route_enc.push(pt);
-  }
-
-  var routepath = new google.maps.Polyline({
-    path: route_enc,
-    geodesic: true,
-    strokeColor: '#FF0000',
-    strokeOpacity: 1.0,
-    strokeWeight: 4
-  });
-
+  var routepath = create_routepath(route);
   routepath.setMap(map);
-
-  // END CREATE ROUTE
 
   // CREATE PHOTO THINGS
 
@@ -56,7 +38,6 @@ function initialize() {
         pic_markers.push(marker);
         pic_windows.push(infowindow);
     }
-
 
     for (i = 0; i < pic_markers.length; i++) {
         google.maps.event.addListener(pic_markers[i], 'click', (function(i) {
