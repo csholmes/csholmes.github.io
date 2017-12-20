@@ -1,4 +1,4 @@
-function create_routepath(route) {
+function createRoutepath(route) {
   return new google.maps.Polyline({
     path: route.map(coordinate => new google.maps.LatLng(coordinate[0], coordinate[1])),
     geodesic: true,
