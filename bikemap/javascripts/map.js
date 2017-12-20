@@ -1,8 +1,11 @@
 var routepath = createRoutepath(route);
-var pictureMarkers = createPictureMarkers(photos);
-var pictureWindows = createPictureWindows(photos);
+//var pictureMarkers = createPictureMarkers(photos);
+//var pictureWindows = createPictureWindows(photos);
+var pm = new pictureMarkers(photos);
 var hostMarkers = createHostMarkers(hosts);
 var map;
+
+
 
 function initialize() {
 
@@ -18,14 +21,15 @@ function initialize() {
   map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
   routepath.setMap(map);
-  showPictureMarkers(map, pictureMarkers);
+  //showPictureMarkers(map, pictureMarkers);
 
 
-  pictureWindows.forEach(pictureWindow => pictureWindow.setMap(map));
+  //pictureWindows.forEach(pictureWindow => pictureWindow.setMap(map));
 
-  createPictureListeners(map, pictureMarkers, pictureWindows, photos);
+  //createPictureListeners(map, pictureMarkers, pictureWindows, photos);
 
-  pictureWindows.forEach(pictureWindow => pictureWindow.close());
+  //pictureWindows.forEach(pictureWindow => pictureWindow.close());
+  pm.show();
 
 
   hostMarkers.forEach(hostMarker => hostMarker.setMap(map));
@@ -50,8 +54,10 @@ function toggleHosts(cb) {
 
 function togglePictureMarkers(cb) {
   if (cb.checked) {
-    showPictureMarkers(map, pictureMarkers);
+    //showPictureMarkers(map, pictureMarkers);
+    pm.show(map);
   } else { 
-    showPictureMarkers(null, pictureMarkers);
+    pm.hide;
+    //showPictureMarkers(null, pictureMarkers);
   }
 }

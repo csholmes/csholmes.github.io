@@ -1,5 +1,19 @@
 
 
+function pictureMarkers(photos) {
+  this.photos = photos;
+  this.pictureWindows = createPictureWindows(photos);
+  this.pictureMarkers = createPictureMarkers(photos);
+}
+
+function pictureMarkers.prototype.show(map) {
+  this.pictureMarkers.forEach(pictureMarker => pictureMarker.setMap(map));
+}
+
+function pictureMarkers.prototype.hide() {
+  this.pictureMarkers.forEach(pictureMarker => pictureMarker.setMap(null));
+}
+
 function createPictureWindows(photos) {
   return photos.map((photo, index) => createPictureWindow(photo, index));
 }
