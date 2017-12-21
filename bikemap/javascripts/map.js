@@ -1,7 +1,7 @@
 var routepath = createRoutepath(route);
 //var pictureMarkers = createPictureMarkers(photos);
 //var pictureWindows = createPictureWindows(photos);
-var pm = new pictureMarkers(photos);
+var picture_markers = new pictureMarkers(photos);
 var hostMarkers = createHostMarkers(hosts);
 var map;
 
@@ -29,7 +29,7 @@ function initialize() {
   //createPictureListeners(map, pictureMarkers, pictureWindows, photos);
 
   //pictureWindows.forEach(pictureWindow => pictureWindow.close());
-  pm.show();
+  picture_markers.show(map);
 
 
   hostMarkers.forEach(hostMarker => hostMarker.setMap(map));
@@ -55,9 +55,9 @@ function toggleHosts(cb) {
 function togglePictureMarkers(cb) {
   if (cb.checked) {
     //showPictureMarkers(map, pictureMarkers);
-    pm.show(map);
+    picture_markers.show(map);
   } else { 
-    pm.hide;
+    picture_markers.hide();
     //showPictureMarkers(null, pictureMarkers);
   }
 }

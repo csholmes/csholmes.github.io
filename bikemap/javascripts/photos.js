@@ -2,16 +2,22 @@
 
 function pictureMarkers(photos) {
   this.photos = photos;
-  this.pictureWindows = createPictureWindows(photos);
-  this.pictureMarkers = createPictureMarkers(photos);
+  this.pictureWindows = createPictureWindows(this.photos);
+  this.pictureMarkers = createPictureMarkers(this.photos);
+  createPictureListeners(this.pictureMarkers, this.pictureWindows, this.photos);
 }
 
-function pictureMarkers.prototype.show(map) {
+pictureMarkers.prototype.show = function(map) {
   this.pictureMarkers.forEach(pictureMarker => pictureMarker.setMap(map));
+  this.pictureWindows.forEach(pictureWindow => pictureWindow.close());
 }
 
-function pictureMarkers.prototype.hide() {
+pictureMarkers.prototype.hide = function() {
   this.pictureMarkers.forEach(pictureMarker => pictureMarker.setMap(null));
+}
+
+pictureMarkers.prototype.toggle = function(map, cb) {
+  //
 }
 
 function createPictureWindows(photos) {
@@ -29,7 +35,7 @@ function createPictureWindow(photo, index) {
     </div>';
 
   return new google.maps.InfoWindow({
-    position: new google.maps.LatLng(photo.lat, photo.lon),
+    //position: new google.maps.LatLng(photo.lat, photo.lon),
     content: content
   });
 }
@@ -46,18 +52,27 @@ function createPictureMarker(photo) {
   });
 }
 
-function createPictureListeners(map, pictureMarkers, pictureWindows, photos) {
-  photos.forEach((photo, index) => createPictureListener(map, pictureMarkers[index], pictureWindows[index], photo, index));
+function createPictureListeners(pictureMarkers, pictureWindows, photos) {
+  photos.forEach((photo, index) => createPictureListener(pictureMarkers[index], pictureWindows[index], photo, index));
 }
 
-function createPictureListener(map, pictureMarker, pictureWindow, photo, index) {
-  google.maps.event.addListener(pictureMarker, 'click', openPictureWindow(map, pictureMarker, pictureWindow, photo, index));
+function createPictureListener(pictureMarker, pictureWindow, photo, index) {
+  //google.maps.event.addListener(pictureMarker, 'click', openPictureWindow(pictureMarker, pictureWindow, photo, index));
+  pictureMarker.addListener('click', function() {
+    pictureWindow.open(pictureMarker.get('map'), pictureMarker);
+    document.getElementById("photo_"+index).innerHTML = '<img src="https://dl.dropbox.com/s/'+photo.file+'" height=480 width=640>';
+  });
 }
 
-function openPictureWindow(map, pictureMarker, pictureWindow, photo, index) {
-  pictureWindow.open(map);
-
+function switchPic(map,toclose,toopen) {
+  pic_windows[toclose].close(map,pic_markers[toclose]);
+  pic_windows[toopen].open(map,pic_markers[toopen]);
 }
+
+//function openPictureWindow(pictureMarker, pictureWindow, photo, index) {
+//  pictureWindow.open(pictureMarker.get('map'), pictureMarker);
+
+//}
 
   //document.getElementById("photo_"+index).innerHTML = '<img src="https://dl.dropbox.com/s/'+photo.file+'" height=480 width=640>';
 
@@ -70,6 +85,6 @@ function openPictureWindow(map, pictureMarker, pictureWindow, photo, index) {
 //           })(i));
 //     }
 
-function showPictureMarkers(map, pictureMarkers) {
-  pictureMarkers.forEach(pictureMarker => pictureMarker.setMap(map));
-}
+//function showPictureMarkers(map, pictureMarkers) {
+//  pictureMarkers.forEach(pictureMarker => pictureMarker.setMap(map));
+//}
