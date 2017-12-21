@@ -62,7 +62,7 @@ function initialize() {
         google.maps.event.addListener(pic_markers[i], 'click', (function(i) {
             return function() {
               pic_windows[i].open(map,pic_markers[i]);
-              document.getElementById("photo_"+i).innerHTML = '<img src="https://dl.dropbox.com/s/'+photos[i].file+'" height=480 width=640>';
+              document.getElementById("photo_"+i).innerHTML = '<img src="https://www.dropbox.com/sh/xf5h6dw6gqdipmk/'+photos[i].key+'/'+photos[i].file+'?raw=1" height=480 width=640>';
             }
           })(i));
     }
