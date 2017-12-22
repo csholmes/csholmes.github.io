@@ -42,7 +42,7 @@ function initialize() {
 
     for (i = 0; i < photos.length; i++) {
 
-        var cont = '<div id="content" ><h1 id="firstHeading" class="firstHeading">'+photos[i].dt+'</h1><img src="https://dl.dropbox.com/s/'+photos[i].file+'" height=480 width=640><div>'+photos[i].note+'</div><button onclick="javascript:switchPic(map,'+i+','+(i+1)+')">next</button><button onclick="javascript:switchPic(map,'+i+','+(i-1)+')">previous</button></div>';
+        var cont = '<div id="content" ><h1 id="firstHeading" class="firstHeading">'+photos[i].dt+'</h1><div id="photo_'+i+'"></div><div>'+photos[i].note+'</div><button onclick="javascript:switchPic(map,'+i+','+(i+1)+')">next</button><button onclick="javascript:switchPic(map,'+i+','+(i-1)+')">previous</button></div>';
 
         var infowindow = new google.maps.InfoWindow({ content: cont });
 
@@ -62,6 +62,7 @@ function initialize() {
         google.maps.event.addListener(pic_markers[i], 'click', (function(i) {
             return function() {
               pic_windows[i].open(map,pic_markers[i]);
+              document.getElementById("photo_"+i).innerHTML = '<img src="https://dl.dropbox.com/s/'+photos[i].file+'" height=480 width=640>';
             }
           })(i));
     }
