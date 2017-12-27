@@ -4,13 +4,7 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <title>SC2SC13</title>
-    <style>
-      html, body, #map-canvas {
-        height: 100%;
-        margin: 0px;
-        padding: 0px
-      }
-    </style>
+    <link rel="stylesheet" type="text/css" href="stylesheets/styles.css">
     <script src="data/route.js"></script>
     <script src="data/hosts.js"></script>
     <script src="data/photos.js"></script>
@@ -18,12 +12,10 @@
     <script src="javascripts/map.js"></script>
   </head>
   <body>
-    <div style="position:absolute; top:60px; right: 20px; z-index:2;background-color: white;width: 79px;border-radius: 2px;padding: 0px;box-shadow: 0px 2px 1px #888888;">
-      <form>
-        <input type="checkbox" name="hosts" value="y" checked="true" onclick='toggleHosts(this);'>Hosts<br/>
-        <input type="checkbox" name="pics" value="y" checked="true" onclick='togglePictures(this);'>Pictures
-      </form>
-    </div> 
+    <form id="legend">
+      <input type="checkbox" name="hosts" value="y" checked="true" onclick='toggleHosts(this);'>Hosts<br/>
+      <input type="checkbox" name="pics" value="y" checked="true" onclick='togglePictures(this);'>Pictures
+    </form>
     <div id="map-canvas"></div>
   </body>
 </html>
