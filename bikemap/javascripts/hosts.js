@@ -1,4 +1,4 @@
-var hosts = new bikeRoute(host_data);
+var hosts = new hostMarkers(host_data);
 
 function hostMarkers(host_data) {
   this.hostMarkers = createHostMarkers(host_data);

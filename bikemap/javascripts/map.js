@@ -49,12 +49,7 @@ function initialize() {
     }
 
 
-    // hosts
-
-    for (i = 0; i < hosts.length; i++) {
-        pt = new google.maps.Marker({position: new google.maps.LatLng(hosts[i][0],hosts[i][1]), map: map, title: 'Host' });
-        host_markers.push(pt);
-    }
+  hosts.show(map);
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
