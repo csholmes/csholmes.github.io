@@ -20,7 +20,7 @@ function createHostMarkers(host_data) {
 }
 
 function createHostMarker(coordinate) {
-  return marker = new google.maps.Marker({
+  return new google.maps.Marker({
     position: new google.maps.LatLng(coordinate[0], coordinate[1]),
     title: 'Host'
   });
