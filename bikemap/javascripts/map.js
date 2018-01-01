@@ -1,6 +1,5 @@
 var pic_markers = [];
 var pic_windows = [];
-var host_markers = [];
 var map;
 
 function initialize() {
