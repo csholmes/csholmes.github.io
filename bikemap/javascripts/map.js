@@ -68,20 +68,6 @@ function showPictures(map) {
   }
 }
 
-// Sets the map on all markers in the array.
-function showHosts(map) {
-  for (var i = 0; i < host_markers.length; i++) {
-    host_markers[i].setMap(map);
-  }
-}
- 
-function toggleHosts(cb) {
-    if (cb.checked) {
-        showHosts(map);
-    } else { 
-        showHosts(null);
-    }
-}
 
 function togglePictures(cb) {
     if (cb.checked) {
